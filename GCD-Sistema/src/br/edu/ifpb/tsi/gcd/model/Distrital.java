@@ -20,16 +20,16 @@ public class Distrital extends Pessoa{
 	private String login;
 	private String senha;
 	@OneToMany(mappedBy="pessoa", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
-	private List<Evento> eventos;
+	private List<Event> eventos;
 	public Distrital(){
-		this.eventos = new ArrayList<Evento>();
+		this.eventos = new ArrayList<Event>();
 	}
 	
 	public Distrital(String login, String senha){
 		super();
 		this.login = login;
 		this.senha = senha;
-		this.eventos = new ArrayList<Evento>();
+		this.eventos = new ArrayList<Event>();
 	}
 	
 }

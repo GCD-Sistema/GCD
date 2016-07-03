@@ -29,29 +29,29 @@ public class Clube {
 	private Diretor diretor;
 	private Boolean situacao;
 	@OneToMany(mappedBy="clube", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
-	private List<Evento> eventos;
+	private List<Event> eventos;
 	//private List<Pessoa> membros;
 	//private List<Unidade> unidades;
 	
 	public Clube(){
 		this.situacao = true;
-		this.eventos = new ArrayList<Evento>();
+		this.eventos = new ArrayList<Event>();
 	}
 	
 	public Clube(String nome, String distrito){
 		this.nome = nome;
 		this.distrito = distrito;
 		this.situacao = true;
-		this.eventos = new ArrayList<Evento>();
+		this.eventos = new ArrayList<Event>();
 		//this.membros = new ArrayList<Pessoa>();
 	}
 	
-	public void addEvento(Evento evento){
+	public void addEvento(Event evento){
 		evento.setClube(this);
 		this.eventos.add(evento);
 	}
 	
-	public void removerEvento(Evento evento){
+	public void removerEvento(Event evento){
 		evento.setClube(null);
 		this.eventos.remove(evento);
 	}

@@ -19,10 +19,10 @@ public class Comentario {
 	private int id;
 	private String texto;
 	@ManyToOne
-	private Evento evento;
+	private Event evento;
 	
 	public Comentario() {}
-	public Comentario(Evento evento, String texto){
+	public Comentario(Event evento, String texto){
 		this.evento = evento;
 		this.texto = texto;
 	}
