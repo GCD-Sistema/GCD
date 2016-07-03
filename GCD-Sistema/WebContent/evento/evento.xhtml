@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+      xmlns:p="http://primefaces.org/ui">
+	<ui:composition template="../template.xhtml">
+		<ui:define name="titulo">Evento</ui:define>
+		<ui:define name="conteudo">
+		
+			<div class="col-sm-12">
+				<div class="tabbable">
+					<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+						<li class="active">
+							<a data-toggle="tab" href="#listagem">Listagem</a>
+						</li>
+	
+						<li class="">
+							<a data-toggle="tab" href="#cadastro">Cadastro</a>
+						</li>
+	
+					</ul>
+	
+					<div class="tab-content">
+						<div id="listagem" class="tab-pane in active">
+							<h:form>
+								<div class="row">
+									<div class="col-xs-12">
+										<h3 class="header smaller lighter blue">Evento</h3>
+											
+										<div class="row">
+											<h:panelGroup styleClass="col-xs-12 col-sm-3">
+												<h:selectOneMenu id="clube" styleClass="col-xs-12 col-sm-12" value="#{EventoBean.clubeSelecionado}">
+													<f:selectItem itemLabel="*** SELECIONE O CLUBE ***" itemValue="#{null}" />
+													<f:selectItems value="#{EventoBean.clubes}" var="clube" itemLabel="#{clube.nome}" itemValue="#{clube.id}"/>
+												</h:selectOneMenu>
+											</h:panelGroup>
+											<h:panelGroup>
+												<h:commandButton value="Buscar Eventos" actionListener="#{EventoBean.buscarEventos}" />
+											</h:panelGroup>
+										</div>
+											
+										<div class="clearfix">
+											<div class="pull-right tableTools-container"></div>
+										</div>
+										<div class="table-header">
+											Lista de Eventos de um Clube
+										</div>
+	
+										<!-- div.table-responsive -->
+	
+										<!-- div.dataTables_borderWrap -->
+										<div>
+											<h:dataTable var="evento" value="#{EventoBean.eventos}" id="dynamic-table" styleClass="table table-striped table-bordered table-hover">
+												<h:column>
+													<f:facet name="header">Tipo</f:facet>
+													<h:outputText value="#{evento.tipo}"/> 	
+												</h:column>
+												
+												<h:column>
+													<f:facet name="header">Nivel</f:facet>
+													<h:outputText value="#{evento.nivel}"/> 	
+												</h:column>
+												
+												<h:column>
+													<f:facet name="header">Descrição</f:facet>
+													<h:outputText value="#{evento.descricao}"/> 	
+												</h:column>
+												
+												<h:column>
+													<f:facet name="header">Comentarios</f:facet>
+													<h:outputText value="#{evento.comentarios.size()}"/> 	
+												</h:column>
+												
+												<h:column>
+													<f:facet name="header">Data</f:facet>
+													<h:outputText value="#{evento.data}">
+														<f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="America/Fortaleza" />
+													</h:outputText> 	
+												</h:column>
+												
+												<h:column>
+													<f:facet name="header">Ação</f:facet>
+													
+													<f:subview rendered="#{EventoBean.permissaoEvento(evento)}">
+														<p:commandLink onclick="PF('addComentario').show();#{EventoBean.prepararEdicao(evento)}" styleClass="tooltip-success" title="Adicionar Comentario">
+															<span class="green">
+																<i class="ace-icon fa fa-plus bigger-120"></i>
+															</span>
+														</p:commandLink>
+													</f:subview>
+													
+													<p:commandLink onclick="PF('listaComentario').show();#{EventoBean.prepararEdicao(evento)}" styleClass="tooltip-success" title="Mostar Comentarios">
+														<span class="green">
+															<i class="ace-icon fa fa-search bigger-120"></i>
+														</span>
+													</p:commandLink>
+													
+													<f:subview rendered="#{EventoBean.permissaoEvento(evento)}">
+														<h:commandLink actionListener="#{EventoBean.prepararEdicao(evento)}" styleClass="tooltip-success" title="Editar Evento">
+															<span class="red">
+																<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+															</span>
+														</h:commandLink>
+													</f:subview>
+													
+													<h:commandLink actionListener="#{EventoBean.excluir(evento)}" styleClass="tooltip-success" title="Deletar Evento">
+														<span class="red">
+															<i class="ace-icon fa fa-trash-o bigger-120"></i>
+														</span>
+													</h:commandLink>
+												</h:column>
+											</h:dataTable>
+										</div>
+									</div>
+								</div>
+							</h:form>
+						</div>
+	
+						<div id="cadastro" class="tab-pane">
+							<h:form>
+								<div class="row">
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Tipo"/>
+										<div>
+											<h:inputText id="tipo" value="#{EventoBean.evento.tipo}" styleClass="col-xs-12 col-sm-12" required="true" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="tipo"/>
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Nivel"/>
+										<div>
+											<h:inputText id="nivel" value="#{EventoBean.evento.nivel}" styleClass="col-xs-12 col-sm-12" required="true" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="nivel"/>
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Descrição"/>
+										<div>
+											<h:inputText id="descricao" value="#{EventoBean.evento.descricao}" styleClass="col-xs-12 col-sm-12" required="true" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="descricao"/>
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Data"/>
+										<div>
+											<h:inputText id="data" value="#{EventoBean.evento.data}" styleClass="col-xs-12 col-sm-12" required="true" requiredMessage="Obrigatório">
+												<f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="America/Fortaleza" />
+											</h:inputText>
+										</div> 	
+										<h:message style="color:red;" for="data"/>
+									</h:panelGroup>
+									
+								</div>
+								
+								<div class="space" />
+								
+								<div class="row">
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Clube"/>
+										<div>
+											<h:selectOneMenu id="clube" styleClass="col-xs-12 col-sm-12" value="#{EventoBean.clubeSelecionado}" required="true" requiredMessage="Obrigatório">
+												<f:selectItem itemLabel="*** SELECIONE ***" itemValue="#{null}" />
+												<f:selectItems value="#{EventoBean.clubes}" var="clube" itemLabel="#{clube.nome}" itemValue="#{clube.id}"/>
+											</h:selectOneMenu>
+										</div>
+										<h:message style="color:red;" for="clube"/>
+									</h:panelGroup>
+								</div>
+								
+								<div class="space" />
+								
+								<div class="row">
+									<h:panelGroup styleClass="col-xs-12 col-sm-2">
+										<h:commandButton value="Salvar" actionListener="#{EventoBean.prepararParaSalvar}" styleClass="col-xs-12 col-sm-12" />
+									</h:panelGroup>
+									<h:panelGroup rendered="#{EventoBean.editando}" styleClass="col-xs-12 col-sm-2">
+										<h:commandButton value="Cancelar Edição" actionListener="#{EventoBean.reset}" styleClass="col-xs-12 col-sm-12" />
+									</h:panelGroup>
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<p:dialog header="Adicionar Comentario" widgetVar="addComentario" resizable="false">
+		        <h:form>
+			        <h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="Comentario:"/>
+						<h:inputText value="#{EventoBean.comentario.texto}"/>
+						<h:commandButton value="Adicionar" actionListener="#{EventoBean.adicionarComentario}"/>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+			
+			<p:dialog header="Lista de Comentarios" widgetVar="listaComentario" resizable="false">
+		        <h:form>
+			        <h:panelGrid columns="2" cellpadding="5">
+						<h:dataTable var="comentario" value="#{EventoBean.evento.comentarios}" styleClass="table table-striped table-bordered table-hover">
+							<h:column>
+								<f:facet name="header">Comentário</f:facet>
+								#{comentario.texto}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Ação</f:facet>
+								<h:commandLink actionListener="#{EventoBean.deletarComentario(comentario)}" styleClass="tooltip-success" title="Deletar Comentario">
+									<span class="red">
+										<i class="ace-icon fa fa-trash-o bigger-120"></i>
+									</span>
+								</h:commandLink>
+							</h:column>
+						</h:dataTable>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog> 
+
+		</ui:define>
+	</ui:composition>
+</html>

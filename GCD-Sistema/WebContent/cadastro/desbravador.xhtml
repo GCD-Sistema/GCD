@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+      xmlns:p="http://primefaces.org/ui">
+	<ui:composition template="../template.xhtml">
+		<ui:define name="titulo">Cadastro Desbravador</ui:define>
+		<ui:define name="conteudo">
+		
+			<div class="col-sm-12">
+				<div class="tabbable">
+					<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+						<li class="active">
+							<a data-toggle="tab" href="#listagem">Listagem</a>
+						</li>
+	
+						<li>
+							<a data-toggle="tab" href="#cadastro">Cadastro</a>
+						</li>
+					</ul>
+	
+					<div class="tab-content">
+						<f:subview rendered="#{LoginBean.verificarTipoDistrital()}">
+							<div id="listagem" class="tab-pane in active">
+								<h:form>
+									<div class="row">
+										<div class="col-xs-12">
+											<h3 class="header smaller lighter blue">Desbravador</h3>
+		
+											<div class="clearfix">
+												<div class="pull-right tableTools-container"></div>
+											</div>
+											<div class="table-header">
+												Lista de Desbravadores Cadastrados
+											</div>
+		
+											<!-- div.table-responsive -->
+		
+											<!-- div.dataTables_borderWrap -->
+											<div>
+												<h:dataTable var="desbravador" value="#{DistritalBean.desbravadores}" id="dynamic-table" styleClass="table table-striped table-bordered table-hover">
+													<h:column>
+														<f:facet name="header">Nome</f:facet>
+														<h:outputText value="#{desbravador.nome}"/> 	
+													</h:column>
+													
+													<h:column>
+														<f:facet name="header">Email</f:facet>
+														<h:outputText value="#{desbravador.email}"/> 	
+													</h:column>
+													
+													<h:column>
+														<f:facet name="header">Telefone</f:facet>
+														<h:outputText value="#{desbravador.telefone}"/> 	
+													</h:column>
+													
+													<h:column>
+														<f:facet name="header">Data de Nascimento</f:facet>
+														<h:outputText value="#{desbravador.dataNascimento}">
+															<f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="America/Fortaleza" />
+														</h:outputText> 	
+													</h:column>
+													
+													<h:column>
+														<f:facet name="header">Sexo</f:facet>
+														<h:outputText value="#{desbravador.sexo ? 'Homem' : 'Mulher'}"/> 	
+													</h:column>
+													
+													<h:column>
+														<f:facet name="header">Nome do Pai</f:facet>
+														<h:outputText value="#{desbravador.nomePai}"/> 	
+													</h:column>
+													
+													<h:column>
+														<f:facet name="header">Nome da Mãe</f:facet>
+														<h:outputText value="#{desbravador.nomeMae}"/> 	
+													</h:column>
+													<h:column>
+														<f:facet name="header">Cargo</f:facet>
+														<h:outputText value="#{desbravador.cargo}"/> 	
+													</h:column>
+													<h:column>
+														<f:facet name="header">Endereço</f:facet>
+														<h:outputText value="#{desbravador.endereco}"/> 	
+													</h:column>
+													<h:column>
+														<f:facet name="header">Unidade</f:facet>
+														<h:outputText value="#{desbravador.unidade}"/> 	
+													</h:column>
+													
+													<h:column>
+														<f:facet name="header">Ação</f:facet>
+														<h:commandLink actionListener="#{DistritalBean.excluirDesbravador(desbravador)}" styleClass="tooltip-success" title="Deletar">
+															<span class="red">
+																<i class="ace-icon fa fa-trash-o bigger-120"></i>
+															</span>
+														</h:commandLink>
+													</h:column>
+												</h:dataTable>
+											</div>
+										</div>
+									</div>
+								</h:form>
+	
+							</div>
+						</f:subview>
+	
+						<div id="cadastro" class="tab-pane">
+							<h:form>
+								<div class="row">
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Nome"/>
+										<div>
+											<h:inputText id="nome" value="#{DesbravadorBean.nome}" styleClass="col-xs-12 col-sm-12" required="false" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="nome"/>						
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Email"/>
+										<div>
+											<h:inputText id="email" value="#{DesbravadorBean.email}" styleClass="col-xs-12 col-sm-12" required="false" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="email"/>						
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Telefone"/>
+										<div>
+											<h:inputText id="telefone" value="#{DesbravadorBean.telefone}" styleClass="col-xs-12 col-sm-12" required="false" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="telefone"/>						
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-2">
+										<h:outputText value="Data de Nascimento"/>
+										<div>
+											<h:inputText id="dataNascimento" value="#{DesbravadorBean.dataNascimento}">
+												<f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" timeZone="America/Fortaleza" />
+											</h:inputText>
+										</div>
+										<h:message style="color:red;" for="dataNascimento"/>						
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-1">
+										<h:outputText value="Sexo"/>
+										<div>
+											<h:selectOneMenu id="sexo" styleClass="col-xs-12 col-sm-12" value="#{DesbravadorBean.sexo}" required="false" requiredMessage="Obrigatório">
+												<f:selectItem itemLabel="" itemValue="#{null}" />
+												<f:selectItem itemLabel="H" itemValue="#{true}" />
+												<f:selectItem itemLabel="M" itemValue="#{false}" />
+											</h:selectOneMenu>
+										</div>
+										<h:message style="color:red;" for="sexo"/>
+									</h:panelGroup>
+								</div>
+								
+								<div class="space" />
+								
+								<div class="row">
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Nome do Pai"/>
+										<div>
+											<h:inputText id="nomePai" value="#{DesbravadorBean.nomePai}" styleClass="col-xs-12 col-sm-12" required="false" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="nomePai"/>						
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Nome da Mãe"/>
+										<div>
+											<h:inputText id="nomeMae" value="#{DesbravadorBean.nomeMae}" styleClass="col-xs-12 col-sm-12" required="false" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="nomeMae"/>						
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Cargo"/>
+										<div>
+											<h:inputText id="cargo" value="#{DesbravadorBean.cargo}" styleClass="col-xs-12 col-sm-12" required="false" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="cargo"/>						
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Endereço"/>
+										<div>
+											<h:inputText id="endereco" value="#{DesbravadorBean.endereco}" styleClass="col-xs-12 col-sm-12" required="false" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="endereco"/>						
+									</h:panelGroup>
+									
+									<h:panelGroup styleClass="col-xs-12 col-sm-3">
+										<h:outputText value="Unidade"/>
+										<div>
+											<h:inputText id="unidade" value="#{DesbravadorBean.unidade}" styleClass="col-xs-12 col-sm-12" required="false" requiredMessage="Obrigatório"/>
+										</div>
+										<h:message style="color:red;" for="unidade"/>						
+									</h:panelGroup>
+					
+								</div>
+								
+								<div class="space" />
+								
+								<div class="row">
+									<h:panelGroup rendered="#{LoginBean.verificarTipoDiretor() and DesbravadorBean.editando or LoginBean.verificarTipoDistrital()}" styleClass="col-xs-12 col-sm-2">
+										<h:commandButton value="Salvar" actionListener="#{DesbravadorBean.addDesbravador}" styleClass="col-xs-12 col-sm-12"/>
+									</h:panelGroup>
+									 <h:panelGroup rendered="#{LoginBean.verificarTipoDiretor() and !DiretorBean.editando}" styleClass="col-xs-12 col-sm-2">
+										<h:commandButton value="Editar" actionListener="#{DiretorBean.prepararEdicao}" styleClass="col-xs-12 col-sm-12"/>
+									</h:panelGroup>
+									<h:panelGroup rendered="#{LoginBean.verificarTipoDiretor() and DiretorBean.editando}" styleClass="col-xs-12 col-sm-2">
+										<h:commandButton value="Cancelar Edição" actionListener="#{DiretorBean.reset}" styleClass="col-xs-12 col-sm-12" />
+									</h:panelGroup> 
+								</div>
+							</h:form>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+<h:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title><ui:insert name="titulo"/></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/css/font-awesome.css" />
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!-- ace settings handler -->
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace-extra.js"></script>
+    
+    <!-- jquery -->
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/jquery.js"></script>
+    
+        <!-- basic scripts -->
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/bootstrap.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!-- ace scripts -->
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.scroller.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.colorpicker.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.fileinput.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.typeahead.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.wysiwyg.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.spinner.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.treeview.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.wizard.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.aside.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.ajax-content.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.touch-drag.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.sidebar.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.submenu-hover.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.widget-box.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.settings.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.settings-rtl.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.settings-skin.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.widget-on-reload.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+
+    <!-- inline scripts related to this page -->
+
+    <!-- the following scripts are used in demo only for onpage help and you don't need them -->
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/css/ace.onpage-help.css" />
+    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/ace/docs/assets/js/themes/sunburst.css" />
+
+    <script type="text/javascript"> ace.vars['base'] = '..'; </script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/elements.onpage-help.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace/ace.onpage-help.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/docs/assets/js/rainbow.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/docs/assets/js/language/generic.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/docs/assets/js/language/html.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/docs/assets/js/language/css.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/docs/assets/js/language/javascript.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/jquery-ui.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/jquery.ui.touch-punch.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/jquery.dataTables.min.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/jquery.dataTables.bootstrap.min.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/dataTables.tableTools.min.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/dataTables.colVis.min.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/js/ace-elements.js"></script>
+    <script src="#{facesContext.externalContext.request.contextPath}/resources/js/auxiliar.js"></script>
+
+</h:head>
+<h:body class="no-skin">
+
+<!-- TOP -->
+
+<div id="navbar" class="navbar navbar-default">
+    <script type="text/javascript">
+        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+    <div class="navbar-container" id="navbar-container">
+        <!-- #section:basics/sidebar.mobile.toggle -->
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">Toggle sidebar</span>
+    
+            <span class="icon-bar"></span>
+    
+            <span class="icon-bar"></span>
+    
+            <span class="icon-bar"></span>
+        </button>
+    
+        <!-- /section:basics/sidebar.mobile.toggle -->
+        <div class="navbar-header pull-left">
+            <!-- #section:basics/navbar.layout.brand -->
+            <a href="#" class="navbar-brand">
+                <small>
+                    <i class="fa fa-leaf"></i>
+                    Modely GYM
+                </small>
+            </a>
+    
+            <!-- /section:basics/navbar.layout.brand -->
+    
+            <!-- #section:basics/navbar.toggle -->
+    
+            <!-- /section:basics/navbar.toggle -->
+        </div>
+    
+        <!-- #section:basics/navbar.dropdown -->
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" src="#{facesContext.externalContext.request.contextPath}/resources/ace/assets/avatars/doug.png" alt="Jason's Photo" />
+                        <span class="user-info">
+                            <small>Welcome,</small>
+                            #{LoginBean.pessoaLogado.login}
+                        </span>
+    
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+    
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                        <li>
+                            <a href="#">
+                                <i class="ace-icon fa fa-cog"></i>
+                                Settings
+                            </a>
+                        </li>
+    
+                        <li class="divider"></li>
+    
+                        <li>                                    
+                            <h:form>
+                                <h:commandLink action="#{LoginBean.logout}" value="Logout" styleClass="ace-icon fa fa-power-off"/> 
+                            </h:form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.navbar-container -->
+</div>
+
+<div class="main-container" id="main-container">
+    <!-- MENU -->
+    <ui:include src="menu/menu-diretor.xhtml"/>
+    
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="page-content">
+            <ui:insert name="conteudo"/>
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+
+<div class="footer">
+    <div class="footer-inner">
+        <!-- #section:basics/footer -->
+        <div class="footer-content">
+            <span class="bigger-120">
+                <span class="blue bolder">Ace</span>
+                Application &copy; 2013-2014
+            </span>
+
+            &nbsp; &nbsp;
+            <span class="action-buttons">
+                <a href="#">
+                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                </a>
+
+                <a href="#">
+                    <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                </a>
+
+                <a href="#">
+                    <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                </a>
+            </span>
+        </div>
+
+        <!-- /section:basics/footer -->
+    </div>
+</div>
+
+<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+</a>
+
+</div><!-- /.main-container -->
+
+
+</h:body>
+</html>

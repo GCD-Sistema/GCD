@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+      xmlns:p="http://primefaces.prime.org/ui">
+	<ui:composition template="../template.xhtml">
+		<ui:define name="titulo">Trocar Senha</ui:define>
+		<ui:define name="conteudo">
+			<div class="col-xs-12 col-sm-12">
+				<div id="trocaSenha" class="tab-pane">
+					<h:form>
+						<div id="msg"><h:messages style="list-style-type: none;color:red;" globalOnly="true" /></div>
+						<div class="row">
+							<h:panelGroup styleClass="col-xs-12 col-sm-3" >
+								<h:outputText value="Senha"/>
+								<div>
+									<h:inputSecret id="senha" value="#{LoginBean.senha}" styleClass="col-xs-12 col-sm-12" required="true" requiredMessage="Obrigatório"/>
+								</div>
+								<h:message style="color:red;" for="senha"/>
+							</h:panelGroup>
+						</div>
+						<div class="row">
+							<h:panelGroup styleClass="col-xs-12 col-sm-3">
+								<h:outputText value="Nova Senha"/>
+								<div>
+									<h:inputSecret id="novaSenha" value="#{LoginBean.novaSenha}" styleClass="col-xs-12 col-sm-12" required="true" requiredMessage="Obrigatório"/>
+								</div>
+								<h:message style="color:red;" for="novaSenha"/>
+							</h:panelGroup>
+						</div>
+						<div class="row">
+							<h:panelGroup styleClass="col-xs-12 col-sm-3">
+								<h:outputText value="Repita a Senha"/>
+								<div>
+									<h:inputSecret id="reSenha" value="#{LoginBean.reSenha}" styleClass="col-xs-12 col-sm-12" required="true" requiredMessage="Obrigatório"/>
+								</div>
+								<h:message style="color:red;" for="reSenha"/>
+							</h:panelGroup>
+						</div>
+						
+						<div class="space" />
+						
+						<div class="row">
+							<div class="col-xs-12 col-sm-1">
+								<h:commandButton value="Salvar" actionListener="#{LoginBean.alterarSenha}" styleClass="col-xs-12 col-sm-12" update="growl"/>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>  
+</html>
